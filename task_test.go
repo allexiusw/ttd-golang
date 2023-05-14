@@ -19,7 +19,7 @@ func TestGetPendingTasks(t *testing.T) {
 
 	t.Log("should return the tasks which need to be completed")
 
-	if got := ds.GetTasks(); !reflect.DeepEqual(got, want) {
+	if got := ds.GetTasks(""); !reflect.DeepEqual(got, want) {
 		t.Errorf("Got %v wanted %v", got, want)
 	}
 }
@@ -38,7 +38,7 @@ func TestGetDoneTasks(t *testing.T) {
 
 	t.Log("should return the tasks which need to be completed")
 
-	if got := ds.getDoneTasks(); !reflect.DeepEqual(got, want) {
+	if got := ds.GetTasks("true"); !reflect.DeepEqual(got, want) {
 		t.Errorf("Got %v wanted %v", got, want)
 	}
 }
@@ -57,7 +57,7 @@ func TestAllTasks(t *testing.T) {
 
 	t.Log("should return the tasks which need to be completed")
 
-	if got := ds.getAllTasks(); !reflect.DeepEqual(got, want) {
+	if got := ds.GetTasks("nil"); !reflect.DeepEqual(got, want) {
 		t.Errorf("Got %v wanted %v", got, want)
 	}
 }

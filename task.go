@@ -1,5 +1,7 @@
 package store
 
+import "strconv"
+
 // Task job to be done or completed
 type Task struct {
 	ID    int    // identifier of the task
@@ -13,26 +15,16 @@ type Datastore struct {
 }
 
 // GetPendingTasks returns all the tasks which need to be done
-func (ds *Datastore) GetTasks() []Task {
+func (ds *Datastore) GetTasks(status string) []Task {
+	if status == "nil" {
+		return ds.tasks
+	}
+	var bool_status, _ = strconv.ParseBool(status)
 	var pendingTasks []Task
 	for _, task := range ds.tasks {
-		if !task.Done {
+		if task.Done == bool_status {
 			pendingTasks = append(pendingTasks, task)
 		}
 	}
 	return pendingTasks
-}
-
-func (ds *Datastore) getDoneTasks() []Task {
-	var doneTasks []Task
-	for _, task := range ds.tasks {
-		if task.Done {
-			doneTasks = append(doneTasks, task)
-		}
-	}
-	return doneTasks
-}
-
-func (ds *Datastore) getAllTasks() []Task {
-	return ds.tasks
 }
