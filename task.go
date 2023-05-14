@@ -32,3 +32,7 @@ func (ds *Datastore) getDoneTasks() []Task {
 	}
 	return doneTasks
 }
+
+func (ds *Datastore) getAllTasks() []Task {
+	return ds.tasks
+}
